@@ -1,0 +1,44 @@
+■ Question 2 What are the key principles of von Neumann architecture? cpu read data and instruction from memory, every bit have address and instructions are executed sequentially
+
+■ Question 3 What are registers? small and fast storge in the CPU 
+
+■ Question 4 What is the hardware stack? its data structure that work in LEFO mechanism, the cpu support with push and pop instructions
+
+■ Question 5 What are the interrupts? some brake in the execute is because the cpu need to handle something 
+
+■ Question 6  What are the main problems that the modern extensions of the von Neumann model are trying
+to solve? interactive ,function handle, multitasking
+
+■ Question 7 What are the main general purpose registers of Intel 64? rax,rbx,rcx,rdx,rsp,rbp,rsi,rdi,r8
+
+■ Question 8 What is the purpose of the stack pointer? point on the top of the stack 
+
+■ Question 9 Can the stack be empty? no 
+
+■ Question 10 Can we count elements in a stack? from hardware point of view no because RSP only save address  from program point of view yes we can see how much rsp in decrees 
+
+
+■ Question 11 What does instruction xor rdi, rdi do? zero rdi
+
+■ Question 12 What is the program return code? 0
+
+■ Question 13 What is the first argument of the exit system call? return value
+
+■ Question 14 Check that the ASCII codes mentioned in the last example are correct. yes
+
+■ Question 15 What is the difference between sar and shr? Check Intel docs. sar shift with the MSB extension, shr shift with 0 extension
+
+■ Question 16 How do you write numbers in different number systems in a way understandable to NASM?
+Check NASM documentation  hex/binary/decimal/octal
+
+■ Question 17 What is the difference between je and jz? they same in ideal but je is commonly use after cmp and jz commonly use after test
+
+
+■ Question 18 What is test equal to after each of the commands listed previously?
+1. 0x01
+2. 0x00002
+3. 0x00000003
+4. 0x0000000000000004
+
+
+■ Question 19 Can you spot a bug or two in Listing 2-15? When will they occur? not zero r13 mean that start with random value and r13 is callee save reg, the fun not save the older value and not restore the old value 

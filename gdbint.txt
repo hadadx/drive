@@ -1,0 +1,19 @@
+set auto-load safe-path /
+layout asm
+# dissasmbly syntax
+set disassembly-flavor intel
+
+# layouts
+layout regs
+ 
+
+
+# alias
+alias bs = b _start
+alias p1 = x/1bx
+alias p2 = x/2bx
+alias p4 = x/4bx
+alias p8 = x/8bx
+
+
+
