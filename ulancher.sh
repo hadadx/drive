@@ -1,6 +1,7 @@
 #!/bin/bash
 # 🧠 הגדרת קיצור Super+Space לפתיחת Ulauncher ב-GNOME
-
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "[]"
 # מסלול לקיצור במערכת ההגדרות
 custom0="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
 
