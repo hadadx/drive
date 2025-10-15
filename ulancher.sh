@@ -1,16 +1,16 @@
 #!/bin/bash
 # ==========================================================
-# 🐧 Ubuntu Tilix Setup Script — Tokyo Night Edition
+# 🐉 Foot Terminal — Tokyo Night Setup Script for Ubuntu
 # ==========================================================
 
 echo "[INFO] Updating system..."
 sudo apt update -y
 
-echo "[INFO] Installing Tilix..."
-sudo apt install -y tilix wget unzip curl
+echo "[INFO] Installing Foot terminal..."
+sudo apt install -y foot wget unzip
 
 # ----------------------------------------------------------
-# 🅰️ Install Nerd Font
+# 🅰️ Install FiraCode Nerd Font
 # ----------------------------------------------------------
 echo "[INFO] Installing FiraCode Nerd Font..."
 mkdir -p ~/.local/share/fonts
@@ -20,67 +20,56 @@ unzip -o FiraCode.zip >/dev/null
 fc-cache -fv
 
 # ----------------------------------------------------------
-# 🎨 Install Tokyo Night color scheme for Tilix
+# 🎨 Create Foot config directory
 # ----------------------------------------------------------
-echo "[INFO] Installing Tokyo Night theme for Tilix..."
-mkdir -p ~/.config/tilix/schemes
-cd ~/.config/tilix/schemes || exit
-wget -q https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/tilix/TokyoNight-Storm.json
+echo "[INFO] Setting up Foot configuration..."
+mkdir -p ~/.config/foot
 
-# ----------------------------------------------------------
-# ⚡ Install Starship prompt
-# ----------------------------------------------------------
-echo "[INFO] Installing Starship prompt..."
-curl -sS https://starship.rs/install.sh | sh -s -- -y
+cat > ~/.config/foot/foot.ini << 'EOF'
+# ======================================
+# 🐉 Foot Terminal — Tokyo Night Theme
+# ======================================
 
-mkdir -p ~/.config
-cat > ~/.config/starship.toml << 'EOF'
-# ===========================================
-# 🌌 Tokyo Night theme for Starship prompt
-# ===========================================
-add_newline = false
+font=FiraCode Nerd Font:size=12
+dpi-aware=yes
+pad=8x8
+shell=/bin/bash
 
-[character]
-success_symbol = "[❯](bold blue)"
-error_symbol = "[✗](bold red)"
+# שקיפות (אם compositor תומך בזה, כמו Hyprland)
+alpha=0.92
 
-[directory]
-style = "bold blue"
-truncation_length = 3
-
-[git_branch]
-symbol = "🌿 "
-style = "purple"
-
-[cmd_duration]
-format = "⏱️ [$duration]($style) "
-style = "bold yellow"
-
-[time]
-disabled = false
-format = "🕒 [$time]($style) "
-style = "dimmed white"
+# צבעים — Tokyo Night Storm
+[colors]
+background=1a1b26
+foreground=c0caf5
+regular0=15161E
+regular1=f7768e
+regular2=9ece6a
+regular3=e0af68
+regular4=7aa2f7
+regular5=bb9af7
+regular6=7dcfff
+regular7=a9b1d6
+bright0=414868
+bright1=f7768e
+bright2=9ece6a
+bright3=e0af68
+bright4=7aa2f7
+bright5=bb9af7
+bright6=7dcfff
+bright7=c0caf5
 EOF
 
 # ----------------------------------------------------------
-# 🧩 Enable Starship for bash/zsh
-# ----------------------------------------------------------
-if [[ -n "$ZSH_VERSION" ]]; then
-  echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-elif [[ -n "$BASH_VERSION" ]]; then
-  echo 'eval "$(starship init bash)"' >> ~/.bashrc
-fi
-
-# ----------------------------------------------------------
-# ✅ Final message
+# ✅ Done
 # ----------------------------------------------------------
 echo
 echo "=========================================================="
-echo "✅ Tilix Tokyo Night setup complete!"
-echo "🎨 Open Tilix → Preferences → Profile → Appearance:"
-echo "   • Color Scheme: TokyoNight-Storm"
-echo "   • Font: FiraCode Nerd Font 13"
-echo "   • Enable transparent background ✅"
+echo "✅ Foot Terminal Tokyo Night setup complete!"
 echo
-echo "⚡ Restart terminal to activate Starship."
+echo "🎨 Config file: ~/.config/foot/foot.ini"
+echo "🅰️ Font: FiraCode Nerd Font (installed)"
+echo "💡 To run: 'foot &'"
+echo
+echo "If you use Hyprland/Sway, transparency will be active automatically."
 echo "=========================================================="
