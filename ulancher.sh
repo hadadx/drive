@@ -1,104 +1,86 @@
-custom0="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['${custom0}']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:${custom0} name 'Launch Ulauncher'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:${custom0} command '/usr/bin/ulauncher-toggle'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:${custom0} binding '<Super>space'
+#!/bin/bash
+# ==========================================================
+# 🐧 Ubuntu Tilix Setup Script — Tokyo Night Edition
+# ==========================================================
 
+echo "[INFO] Updating system..."
+sudo apt update -y
 
+echo "[INFO] Installing Tilix..."
+sudo apt install -y tilix wget unzip curl
 
+# ----------------------------------------------------------
+# 🅰️ Install Nerd Font
+# ----------------------------------------------------------
+echo "[INFO] Installing FiraCode Nerd Font..."
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts || exit
+wget -q https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
+unzip -o FiraCode.zip >/dev/null
+fc-cache -fv
 
-# ========== 🗼 Tokyo Night Kitty Theme ========== #
+# ----------------------------------------------------------
+# 🎨 Install Tokyo Night color scheme for Tilix
+# ----------------------------------------------------------
+echo "[INFO] Installing Tokyo Night theme for Tilix..."
+mkdir -p ~/.config/tilix/schemes
+cd ~/.config/tilix/schemes || exit
+wget -q https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/tilix/TokyoNight-Storm.json
 
-# Font
-font_family               JetBrainsMono Nerd Font
-bold_font                 auto
-italic_font               auto
-bold_italic_font          auto
-font_size                 14.0
+# ----------------------------------------------------------
+# ⚡ Install Starship prompt
+# ----------------------------------------------------------
+echo "[INFO] Installing Starship prompt..."
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 
-# Window
-background_opacity        0.88
-confirm_os_window_close   0
-window_border_width       1px
-hide_window_decorations   titlebar-only
-repaint_delay             6
-input_delay               1
+mkdir -p ~/.config
+cat > ~/.config/starship.toml << 'EOF'
+# ===========================================
+# 🌌 Tokyo Night theme for Starship prompt
+# ===========================================
+add_newline = false
 
-# Colors
-foreground #c0caf5
-background #1a1b26
-cursor     #7aa2f7
-url_color  #bb9af7
-selection_foreground #1a1b26
-selection_background #7aa2f7
+[character]
+success_symbol = "[❯](bold blue)"
+error_symbol = "[✗](bold red)"
 
-# 16 ANSI Colors
-color0  #1a1b26
-color1  #f7768e
-color2  #9ece6a
-color3  #e0af68
-color4  #7aa2f7
-color5  #bb9af7
-color6  #7dc4cc
-color7  #a9b1d6
-color8  #414868
-color9  #f7768e
-color10 #9ece6a
-color11 #e0af68
-color12 #7aa2f7
-color13 #bb9af7
-color14 #7dc4cc
-color15 #c0caf5
+[directory]
+style = "bold blue"
+truncation_length = 3
 
-# Tabs
-tab_bar_style             powerline
-tab_powerline_style       angled
-active_tab_background     #7aa2f7
-active_tab_foreground     #1a1b26
-inactive_tab_background   #1a1b26
-inactive_tab_foreground   #565f89
-tab_bar_background        #16161e
-tab_separator_color       #7aa2f7
+[git_branch]
+symbol = "🌿 "
+style = "purple"
 
-# Cursor
-cursor_shape              beam
-cursor_blink_interval     0
-cursor_stop_blinking_after 0
+[cmd_duration]
+format = "⏱️ [$duration]($style) "
+style = "bold yellow"
 
-# Scrolling
-scrollback_lines          10000
+[time]
+disabled = false
+format = "🕒 [$time]($style) "
+style = "dimmed white"
+EOF
 
-# Mouse
-copy_on_select            yes
-strip_trailing_spaces     always
+# ----------------------------------------------------------
+# 🧩 Enable Starship for bash/zsh
+# ----------------------------------------------------------
+if [[ -n "$ZSH_VERSION" ]]; then
+  echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+elif [[ -n "$BASH_VERSION" ]]; then
+  echo 'eval "$(starship init bash)"' >> ~/.bashrc
+fi
 
-# Performance
-sync_to_monitor           no
-
-# Keyboard shortcuts
-kitty_mod ctrl+shift
-map ctrl+shift+r reload_config
-map ctrl+shift+t new_tab
-map alt+1 goto_tab 1
-map alt+2 goto_tab 2
-map alt+3 goto_tab 3
-map alt+w close_tab
-
-# Background image (optional)
-# background_image ~/.config/kitty/backgrounds/tokyonight.jpg
-# background_image_layout scaled
-# background_tint 0.4
-
-# Shell
-shell /usr/bin/bash
-
-
-# גודל חלון ברירת מחדל (מספר תווים, לא פיקסלים)
-initial_window_width  80c
-initial_window_height 24c
-
-# או לפי פיקסלים (אם אתה רוצה שליטה מדויקת)
-# initial_window_width  800
-# initial_window_height 500
-
-kitty --class quake -o initial_window_width=1000 -o initial_window_height=400
+# ----------------------------------------------------------
+# ✅ Final message
+# ----------------------------------------------------------
+echo
+echo "=========================================================="
+echo "✅ Tilix Tokyo Night setup complete!"
+echo "🎨 Open Tilix → Preferences → Profile → Appearance:"
+echo "   • Color Scheme: TokyoNight-Storm"
+echo "   • Font: FiraCode Nerd Font 13"
+echo "   • Enable transparent background ✅"
+echo
+echo "⚡ Restart terminal to activate Starship."
+echo "=========================================================="
