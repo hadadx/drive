@@ -99,3 +99,10 @@ border_width 2.0
 active_border_color #7aa2f7
 inactive_border_color #1a1b26
 hide_window_decorations yes
+
+
+rounding 12
+blur true
+bordersize 2
+col.active_border=0xFF7AA2F7
+col.inactive_border=0xFF1A1B26
