@@ -100,3 +100,5 @@ initial_window_height 24c
 # או לפי פיקסלים (אם אתה רוצה שליטה מדויקת)
 # initial_window_width  800
 # initial_window_height 500
+
+kitty --class quake -o initial_window_width=1000 -o initial_window_height=400
