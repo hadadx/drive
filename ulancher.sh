@@ -91,3 +91,16 @@ map alt+w close_tab
 
 # Shell
 shell /usr/bin/bash
+
+
+# עובי המסגרת (בפיקסלים)
+border_width 2.0
+
+# צבע המסגרת כשהחלון בפוקוס
+active_border_color #7aa2f7
+
+# צבע המסגרת כשהחלון לא בפוקוס
+inactive_border_color #3b4261
+
+# עיגול פינות (אם תרצה)
+corner_radius 8.0
