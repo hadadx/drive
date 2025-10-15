@@ -93,16 +93,10 @@ map alt+w close_tab
 shell /usr/bin/bash
 
 
-corner_radius 12.0
-background_opacity 0.9
-border_width 2.0
-active_border_color #7aa2f7
-inactive_border_color #1a1b26
-hide_window_decorations yes
+# גודל חלון ברירת מחדל (מספר תווים, לא פיקסלים)
+initial_window_width  80c
+initial_window_height 24c
 
-
-rounding 12
-blur true
-bordersize 2
-col.active_border=0xFF7AA2F7
-col.inactive_border=0xFF1A1B26
+# או לפי פיקסלים (אם אתה רוצה שליטה מדויקת)
+# initial_window_width  800
+# initial_window_height 500
