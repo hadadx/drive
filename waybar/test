@@ -1,0 +1,91 @@
+@define-color bg     #0f0f0f;   /* רקע שחור עמוק */
+@define-color fg     #eaeaea;   /* טקסט לבן רך */
+@define-color dim    #777777;   /* אפור בינוני */
+@define-color light  #bfbfbf;   /* אפור בהיר */
+@define-color border #999999;   /* אפור לגבולות מודולים */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 16px;
+    font-weight: bold;
+    color: @fg;
+}
+
+window#waybar {
+    background-color: @bg;
+    color: @fg;
+    border-top: 1px solid @border;
+}
+
+/* === Workspaces === */
+#workspaces button {
+    padding: 0 6px;
+    color: @light;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.active {
+    color: @fg;
+    border-bottom: 3px solid @fg;
+}
+
+#workspaces button.empty {
+    color: @dim;
+}
+
+#workspaces button.empty.active {
+    color: @fg;
+    border-bottom: 3px solid @fg;
+}
+
+#workspaces button.urgent {
+    background-color: @dim;
+    color: @bg;
+}
+
+button:hover {
+    background: @dim;
+    color: @bg;
+}
+
+/* === Modules === */
+#clock,
+#custom-sep,
+#battery,
+#cpu,
+#memory,
+#disk,
+#network,
+#tray {
+    padding: 0 8px;
+    color: @light;
+    border-bottom: 3px solid @border;
+    transition: border-color 0.3s;
+}
+
+#custom-sep {
+    color: @dim;
+}
+
+#clock:hover,
+#battery:hover,
+#disk:hover,
+#memory:hover,
+#cpu:hover,
+#network:hover {
+    border-bottom: 3px solid @fg;
+}
+
+/* === Network === */
+#network.disconnected {
+    color: @bg;
+    background-color: @dim;
+}
+
+/* === Tray === */
+#tray {
+    background-color: #1a1a1a;
+    border-radius: 6px;
+}
